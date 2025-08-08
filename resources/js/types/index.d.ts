@@ -41,3 +41,36 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+export interface Folder {
+    id: number;
+    name: string;
+    domains_count?: number;
+    domains?: Domain[];
+    created_at: string;
+    updated_at: string;
+}
+
+export interface Domain {
+    id: number;
+    folder_id: number;
+    original_url: string;
+    normalized_domain: string;
+    created_at: string;
+    updated_at: string;
+}
+
+export interface DuplicateDomain {
+    attempted: string;
+    existing: string;
+    normalized: string;
+}
+
+export interface PageProps {
+    flash?: {
+        type: 'success' | 'error';
+        message: string;
+        addedDomains?: string[];
+        duplicates?: DuplicateDomain[];
+    };
+}
